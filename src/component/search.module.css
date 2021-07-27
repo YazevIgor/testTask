@@ -1,0 +1,15 @@
+
+.container {
+    display: grid;
+    border: 1px black solid;
+    grid-template-columns: 5fr 1fr 1fr;
+}
+
+.data {
+    grid-column: 1/4;
+}
+.info {
+    display: grid;
+    grid-template-columns: 5fr 1fr 1fr;
+    border: 1px black solid;
+}
