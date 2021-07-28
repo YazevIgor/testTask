@@ -6,8 +6,8 @@ let instance = axios.create({
 })
 export const textApi = {
     requestText(id) {
+        //отправлем get запрос на сервер
         return instance.get(id).then(response => {
-            console.log(response)
             return response
         })
     }

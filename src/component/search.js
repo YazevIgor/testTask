@@ -8,7 +8,9 @@ const Search = (props) => {
     let letters = [];
     let IDs = '';
     let filterText = [];
+    let wrongCharacters = [];
     for (let i = 0; i < props.text.length; i++) {
+        // для реализации поиска захардкоденных строк через ID, при запросе через сервер такого не надо
         for (let j = 0; j < props.id.length; j++) {
             if (props.text[i].id === props.id[j]) {
                 filterText.push(props.text[i].text)
@@ -16,13 +18,17 @@ const Search = (props) => {
         }
     }
     function numFromStr() {
+        //Функция очистки введенных Id от мусора
         let id = ([...IDs]
             .map(i => {
-                if (isFinite(i) === true || i === ".") {
+                if (i.match(/[a-z]/i))
+                    wrongCharacters.push(i)
+                if (isFinite(i) === true) {
                     return i
                 } else {
                     return " "
                 }
+
             })
             .join("")
             .split(" ")
@@ -30,6 +36,7 @@ const Search = (props) => {
             .map(i => Number(i)))
         props.setId(id);
         setIsFetching(true)
+        alert(`Вы ввели неправельные символы: ${wrongCharacters}`)
     }
 
     return <div>
@@ -54,7 +61,9 @@ const Search = (props) => {
                         Количество гласных
                     </div>
                     <div className={classes.data}>
-                        <div>
+                        <div> {
+                            //Отрисовка полученных строк и подсчет слов и гласных
+                        }
                             {filterText.map(item => {
                                 words = (item.split(' ').length);
                                 const matchedEn = item.match(/[aeiou]/gi);

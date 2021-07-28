@@ -10,6 +10,7 @@ class SearchContainer extends React.Component {
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.id !== this.props.id){
+            //Для запросов на сервер, не работает из-за проблемы с сервером
             //this.props.getText(this.props.id)
         }
     }
